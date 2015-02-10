@@ -10,6 +10,8 @@
 		<class>domain.training.Participation</class>
 		<class>domain.training.ParticipationId</class>
 		<class>domain.training.Project</class>
+		<class>domain.training.Player</class>
+		<class>domain.training.Team</class>
 		<properties>
 			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 		</properties>
