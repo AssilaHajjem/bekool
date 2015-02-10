@@ -1,5 +1,7 @@
 package domain.training.services;
 
+import java.util.List;
+
 import javax.ejb.Remote;
 
 import domain.training.Player;
@@ -12,4 +14,9 @@ public interface TeamManagementRemote {
 
 	Boolean AddTeam(Team team);
 
+	Team findTeamByPlayerId(Integer id);
+
+	Team findTeamById(Integer id);
+
+	List<Player> findPlayersByTeam(Team team);
 }
