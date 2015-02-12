@@ -54,12 +54,10 @@ public class TeamManagement implements TeamManagementRemote,
 	public Team findTeamByPlayerId(Integer id) {
 		Team team = null;
 		Player player = entityManager.find(Player.class, id);
-		System.out.println(player.getTeam().getTeamName());
-		String jpql = "select t from Team t where :p in t.players ";
-
+		String jpql = "select t from Team t ,Player p where :x=p and p member of t.players ";
 		Query query = entityManager.createQuery(jpql);
-		query.setParameter("p", player);
-		// team = (Team) query.getSingleResult();
+		query.setParameter("x", player);
+		team = (Team) query.getSingleResult();
 		return team;
 	}
 
@@ -73,8 +71,9 @@ public class TeamManagement implements TeamManagementRemote,
 	@Override
 	public List<Player> findPlayersByTeam(Team team) {
 		List<Player> players = new ArrayList<Player>();
-		String jpql = "select p from Player p where p.team= " + team;
+		String jpql = "select p from Player p where p.team= :t";
 		Query query = entityManager.createQuery(jpql);
+		query.setParameter("t", team);
 		players = query.getResultList();
 		return players;
 	}
